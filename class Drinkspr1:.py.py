@@ -7,11 +7,11 @@ class Drink:
 #base prices 
     _size_costs = {
         
-        "small": 1.00,
-        "medium": 1.50,
-        "large": 2.00,
-        "extra large": 2.50,
-        "jumbo": 2.00,
+        "small": 1.50,
+        "medium": 1.75,
+        "large": 2.05,
+        "extra large": 2.15,
+        
     }
     
     def _inti_(self, size):
@@ -21,13 +21,14 @@ class Drink:
         self._cost = 0.00
         self._set_size(size)
         
+#each flavor price addition $0.15
     _flavor_prices = {
-        "leche cubes": 0.25,
-        "vanilla": 0.50,
-        "coconut": 0.75,
-        "cocoa": 1.00,
-        "lemon": 0.50,
-        "lime": 0.50,
+        "leche cubes": 0.15,
+        "vanilla": 0.15,
+        "coconut": 0.15,
+        "cocoa": 0.15,
+        "lemon": 0.15,
+        "lime": 0.15,
     }
     
     def __init__(self, size):
@@ -68,7 +69,7 @@ class Drink:
         else:
             raise ValueError(f"Invalid flavor: {flavor}. Valid flavors are: {self._valid_flavors}"
             )
-           
+    #adding flavor total to tax rate added to order       
     def set_flavors(self, flavors):
         if all(flavor in self._valid_flavors for flavor in flavors):
            new_flavors = set(flavors) - self._flavors
@@ -78,11 +79,12 @@ class Drink:
             invalid_flavors = [flavor for flavor in flavors if flavor not in self._valid_flavors]
             raise ValueError(f"Invalid flavor: {flavors}. choose different flavor from{self._valid_flavors}")
                 
-        
+#accessor  
     def set_size(self, size):
         size = size.lower()
         if size in self._size_costs:
             self._size = size
+#Tax rate added to order
             self._cost = self._size_costs[size] + 0.15 * len(self._flavors)
         else:
                 raise ValueError(f"Invalid flavors: {size}, choose different flavor from: {list(self._size_costs.keys())}.")
@@ -109,13 +111,14 @@ class Order:
     def get_num_items(self):
         return len(self._items)
     
-    
+#accessors
     def get_total(self):
        return sum(drink.get_total() for drink in self._items)
    
     def get_tax(self):
        return self.get_total() * (1 + self._tax_rate)
-    
+
+#order receipt 
     def get_receipt(self):
         receipt_data = {
             "number_drinks": self.get_num_items(),
