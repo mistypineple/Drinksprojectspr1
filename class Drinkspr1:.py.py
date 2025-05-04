@@ -22,6 +22,8 @@ class Drink:
         self._set_size(size)
         
 #each flavor price addition $0.15
+#wondering if having all flavors set at .15 is necessary or having it set to all the same?
+#wondering if flavor prices is not necessary to list or if listed needs a def inti method code?
     _flavor_prices = {
         "leche cubes": 0.15,
         "vanilla": 0.15,
@@ -33,7 +35,7 @@ class Drink:
     
     def __init__(self, size):
         
-    
+##not sure if what is not in color the right callout method(might reveal error going forward)   
      def __init__(self, base):
         if base not in self._valid_bases:
             raise ValueError(f"Invalid base: {base}, Valid bases are: {self._valid_bases}")
@@ -87,7 +89,7 @@ class Drink:
 #Tax rate added to order
             self._cost = self._size_costs[size] + 0.15 * len(self._flavors)
         else:
-                raise ValueError(f"Invalid flavors: {size}, choose different flavor from: {list(self._size_costs.keys())}.")
+            raise ValueError(f"Invalid flavors: {size}, choose different flavor from: {list(self._size_costs.keys())}.")
     
     def _str__(self):
         return f"Drink(base={self._base}, flavors={self._flavors})"
@@ -118,6 +120,8 @@ class Order:
     def get_tax(self):
        return self.get_total() * (1 + self._tax_rate)
 
+#not getting the code to print the receipt without print statement
+#def receipt might need to be changed to run the code
 #order receipt 
     def get_receipt(self):
         receipt_data = {
@@ -142,10 +146,10 @@ class Order:
         
         
     def remove_item(self, index):
-        if 0 <= index < len(self._items):
-            self._items.pop(index)
-        else:
-            raise IndexError("Invalid")
+            if 0 <= index < len(self._items):
+             self._items.pop(index)
+            else:
+               raise IndexError("Invalid")
             
     
         
