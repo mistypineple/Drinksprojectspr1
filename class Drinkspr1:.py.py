@@ -1,3 +1,5 @@
+
+
 class Drink:
 # class variables stored (flavors and bases)
     _valid_bases = {"water","milk","Thai tea", "green tea", "coffee", "mineral water",}
